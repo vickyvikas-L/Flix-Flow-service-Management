@@ -2,7 +2,7 @@
 
 FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer Support platform designed for appliance and electronics repair companies. It bridges **Customers**, **Technicians**, and **Administrators** into a unified, real-time workflow ecosystem.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/your-vickyvikasl)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/vickyvikasl/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/vickyvikas-L/Flix-Flow-service-Management)
 ![Stack](https://img.shields.io/badge/Stack-Python%20%7C%20Django%20%7C%20DRF%20%7C%20JavaScript-6366f1)
 ![License](https://img.shields.io/badge/License-MIT-green)
