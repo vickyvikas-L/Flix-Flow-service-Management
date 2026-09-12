@@ -261,7 +261,7 @@ function renderRoleSpecificHeader() {
       `;
     } else {
       titleEl.innerHTML = `
-        <h1>FixFlow Admin Control</h1>
+        <h1>FlixFlow Admin Control</h1>
         <p>Overview of system metrics, technician assignments, and service categories.</p>
       `;
     }
@@ -520,7 +520,7 @@ function viewInvoice(ticketId) {
     <div class="invoice-box">
       <div class="invoice-header-row">
         <div>
-          <div class="invoice-brand">FIXFLOW</div>
+          <div class="invoice-brand">FLIXFLOW</div>
           <div style="font-size: 0.8rem; color: #6b7280; margin-top: 0.2rem;">Service Management & Customer Support</div>
         </div>
         <div style="text-align: right;">
