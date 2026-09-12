@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixFlow - Service Management & Customer Support Platform</title>
+  
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <a href="#" class="logo-container">
+      <div class="logo-icon">
+        <i class="fas fa-wrench"></i>
+      </div>
+      <span class="logo-text">FixFlow</span>
+    </a>
+
+    <!-- Demo Role Switcher Bar -->
+    <div class="demo-switcher">
+      <span class="demo-title">⚡ Quick Login:</span>
+      <button class="demo-btn active" data-role="CUSTOMER">Customer (Vikas)</button>
+      <button class="demo-btn" data-role="TECHNICIAN">Technician (Ramesh)</button>
+      <button class="demo-btn" data-role="ADMIN">Admin</button>
+    </div>
+
+    <!-- User Controls & Notifications -->
+    <div class="user-controls">
+      <div class="notif-wrapper">
+        <button class="icon-btn" id="notifBellBtn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="badge" id="notifBadge">0</span>
+        </button>
+
+        <!-- Dropdown Notifications Panel -->
+        <div class="notif-dropdown" id="notifDropdown">
+          <div class="notif-header">
+            <h4>Notifications</h4>
+            <button class="mark-read-btn" onclick="markAllNotificationsRead()">Mark all as read</button>
+          </div>
+          <div class="notif-list" id="notifList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div id="userBadgeContainer">
+        <!-- User Pill rendered dynamically -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    <!-- Dashboard Header Title & Action Button -->
+    <div class="dashboard-header">
+      <div class="dashboard-title" id="dashboardHeaderTitle">
+        <h1>My Service Requests</h1>
+        <p>Track repair status, view assigned technicians, and download invoices.</p>
+      </div>
+      <div id="headerActionBtnContainer">
+        <!-- Dynamic create button -->
+      </div>
+    </div>
+
+    <!-- Admin KPI Stats Grid -->
+    <div class="kpi-grid" id="kpiContainer" style="display: none;">
+      <!-- Dynamic KPI cards -->
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search ticket #1024, service category, problem description...">
+      </div>
+
+      <div class="filter-pills">
+        <span class="filter-label">Filter Status:</span>
+        <button class="pill-btn active" data-status="ALL">All</button>
+        <button class="pill-btn" data-status="PENDING">Pending</button>
+        <button class="pill-btn" data-status="ASSIGNED">Assigned</button>
+        <button class="pill-btn" data-status="IN_PROGRESS">In Progress</button>
+        <button class="pill-btn" data-status="COMPLETED">Completed</button>
+      </div>
+    </div>
+
+    <!-- Service Requests Grid -->
+    <div class="tickets-grid" id="ticketsGrid">
+      <!-- Tickets rendered dynamically -->
+    </div>
+  </main>
+
+  <!-- MODALS SYSTEM -->
+
+  <!-- Create Service Request Modal (Customer) -->
+  <div class="modal-overlay" id="createTicketModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Create Service Request</h3>
+        <button class="close-btn" onclick="closeModal('createTicketModal')">&times;</button>
+      </div>
+      <form onsubmit="submitCreateTicket(event)">
+        <div class="form-group">
+          <label>Service Category</label>
+          <select id="ticketCategorySelect" required>
+            <!-- Categories loaded dynamically -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Issue Title</label>
+          <input type="text" id="ticketTitle" placeholder="e.g. Laptop not charging" required>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="ticketPriority" required>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM" selected>Medium</option>
+            <option value="HIGH">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Problem Description</label>
+          <textarea id="ticketDescription" rows="4" placeholder="Describe the issue in detail..." required></textarea>
+        </div>
+        <button type="submit" class="action-btn" style="width: 100%; justify-content: center;">
+          <i class="fas fa-paper-plane"></i> Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Assign Technician Modal (Admin) -->
+  <div class="modal-overlay" id="assignModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Assign Technician</h3>
+        <button class="close-btn" onclick="closeModal('assignModal')">&times;</button>
+      </div>
+      <form onsubmit="submitAssignTechnician(event)">
+        <input type="hidden" id="assignTicketId">
+        <div class="form-group">
+          <label>Select Technician</label>
+          <select id="technicianSelect" required>
+            <!-- Technicians loaded dynamically -->
+          </select>
+        </div>
+        <button type="submit" class="action-btn" style="width: 100%; justify-content: center;">
+          <i class="fas fa-check"></i> Assign Job
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Update Status & Notes Modal (Technician) -->
+  <div class="modal-overlay" id="updateStatusModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Update Job Progress</h3>
+        <button class="close-btn" onclick="closeModal('updateStatusModal')">&times;</button>
+      </div>
+      <form onsubmit="submitStatusUpdate(event)">
+        <input type="hidden" id="updateTicketId">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="updateStatusSelect" required>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Technician Notes</label>
+          <textarea id="updateWorkNotes" rows="3" placeholder="e.g. Charging IC replaced. Tested successfully." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Spare Parts / Extra Charge (₹)</label>
+          <input type="number" id="updateExtraCharge" value="300" min="0">
+        </div>
+        <button type="submit" class="action-btn" style="width: 100%; justify-content: center;">
+          <i class="fas fa-save"></i> Save Updates
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Printable Invoice Preview Modal -->
+  <div class="modal-overlay" id="invoiceModal">
+    <div class="modal-card invoice-modal-content" style="max-width: 650px;">
+      <div class="modal-header" style="margin-bottom: 0.5rem;">
+        <h3>Service Invoice</h3>
+        <button class="close-btn" onclick="closeModal('invoiceModal')">&times;</button>
+      </div>
+      <div id="invoiceModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Service Rating Modal -->
+  <div class="modal-overlay" id="ratingModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Rate Service Experience</h3>
+        <button class="close-btn" onclick="closeModal('ratingModal')">&times;</button>
+      </div>
+      <form onsubmit="submitRating(event)">
+        <input type="hidden" id="ratingTicketId">
+        <div class="form-group">
+          <label>Rating (1 to 5 Stars)</label>
+          <select id="ratingScoreSelect" required>
+            <option value="5" selected>⭐⭐⭐⭐⭐ (5/5) Excellent</option>
+            <option value="4">⭐⭐⭐⭐ (4/5) Very Good</option>
+            <option value="3">⭐⭐⭐ (3/5) Average</option>
+            <option value="2">⭐⭐ (2/5) Poor</option>
+            <option value="1">⭐ (1/5) Terrible</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Feedback & Review</label>
+          <textarea id="ratingReviewText" rows="3" placeholder="Share your experience with the technician..."></textarea>
+        </div>
+        <button type="submit" class="action-btn" style="width: 100%; justify-content: center;">
+          <i class="fas fa-star"></i> Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Alerts -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Script -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
