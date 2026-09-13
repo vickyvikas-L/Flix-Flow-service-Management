@@ -145,4 +145,4 @@ The app includes a 1-click **Quick Demo Switcher** bar at the top of the screen:
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
