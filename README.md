@@ -16,7 +16,7 @@ FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer S
 - **Technician**: View assigned jobs, update work stage (`Pending` → `Assigned` → `In Progress` → `Completed`), log work notes (*"Charging IC replaced..."*), and add spare part charges.
 - **Administrator**: High-level KPI control metrics, customer & technician directory management, job dispatching/assignment, service category configuration, and revenue analytics.
 
-### ⚡ 2. Ticket Tracking Pipeline
+### ⚡ 2. Ticket Tracking Pipeline 
 - Real-time visual progress pipeline tracking each request from receipt to resolution.
 - Multi-criteria filtering by **Status** (`Pending`, `Assigned`, `In Progress`, `Completed`) and **Priority** (`High`, `Medium`, `Low`).
 - Instant live search across Ticket ID, Customer Name, Category, and Problem Description.
