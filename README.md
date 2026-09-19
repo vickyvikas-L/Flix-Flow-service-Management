@@ -27,7 +27,7 @@ FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer S
 - Printable & downloadable clean PDF/invoice layout.
 
 ### 🔔 4. Notifications & In-App Alerts
-- Real-time notifications dispatched upon technician assignment, status updates, and invoice generation.
+- Real-time notifications dispatched upon technician assignment, status updates, and invoice generation. 
 
 ---
 
