@@ -5,7 +5,7 @@ FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer S
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/vickyvikasl/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/vickyvikas-L/Flix-Flow-service-Management)
 ![Stack](https://img.shields.io/badge/Stack-Python%20%7C%20Django%20%7C%20DRF%20%7C%20JavaScript-6366f1)
-![License](https://img.shields.io/badge/License-MIT-green)   
+![License](https://img.shields.io/badge/License-MIT-green)   n
 
 ---
 
