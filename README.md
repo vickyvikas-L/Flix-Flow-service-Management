@@ -9,7 +9,7 @@ FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer S
 
 ---
 
-## 🌟 Key Features s
+## 🌟 Key Features 
  
 ### 👤 1. Role-Based Authentication & Permissions 
 - **Customer**: Create service requests, attach issue notes, track status pipelines, view assigned technicians, download invoices, and rate completed repairs.
