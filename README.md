@@ -1,4 +1,4 @@
-# FlixFlow - Smart Service Management & Customer Support Platform sss
+# FlixFlow - Smart Service Management & Customer Support Platform ss
 FlixFlow is a full-stack, multi-tenant enterprise Service Request and Customer Support platform designed for appliance and electronics repair companies. It bridges **Customers**, **Technicians**, and **Administrators** into a unified, real-time workflow ecosystem. 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/vickyvikasl/)
